@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Angular Connect 4 &amp; Simple AI</title>
+  <link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<div class="container" ng-app="connectFour" ng-controller="mainController as main">
+	<div ng-show="main.modal" class="modal" ng-click="main.modal = false">
+		<div class="modal-inner">
+			<span class="modalx" ng-click="main.modal = false">X</span>
+			
+		</div>
+	</div>
+	<div class="wrap winner-{{main.winner}}">
+		<h2>Angular Connect 4</h2>
+		<div class="buttons">
+			<h4>Game Type:</h4>
+			<label><input type="radio" ng-model="main.playType" name="gameType" value="2" /> 2 player (Local)</label>
+			<label><input type="radio" ng-model="main.playType" name="gameType" value="1" /> AI (In Dev)</label>
+		</div>
+		<div class="board active-{{main.active}}">
+			<span class="row" ng-repeat="row in main.boardState track by $index">
+				<div ng-repeat="cell in row track by $index" class="cell active-{{cell}}" ng-click="main.drop($parent.$index,$index)"></div>
+				<p style="clear:both;"></p>
+			</span>
+			<div class="leftFoot"></div>
+			<div class="rightFoot"></div>
+		</div>
+		<div style="clear:both"></div>
+		<button class="reset" ng-click="main.init()">Reset</button>
+		
+		<h2 ng-show="main.winner">Winner is {{main.winner}}</h2>
+	</div>
+</div>
+<!-- partial -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.2/angular.min.js'></script>
+<script src='https://cdn.rawgit.com/Luegg/angularjs-scroll-glue/master/src/scrollglue.js'></script><script  src="./script.js"></script>
+
+</body>
+</html>
